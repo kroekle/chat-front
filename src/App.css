@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+  height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  height: 20vh;
+  width: auto;
+}
+
+.App-header {
+  background-color: white;
+  min-height: 20vh;
+  max-height: 20vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-body {
+  background-color: #3EC9D6;
+  flex-direction: row;
+  padding: 5vh;
+  height: 70vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.User-body {
+  height: 60vh;
+  width: 10vw;
+  padding-right: 1%;
+}
+
+.Message-body {
+  height: 60vh;
+  width: 30vw;
+}

@@ -1,0 +1,42 @@
+.Body {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Text-name {
+  justify-self: left;
+}
+
+.Header-field {
+  width: 40%;
+}
+
+.Text-input {
+  width: 100%;
+}
+
+.Message-text {
+  text-align: left;
+}
+
+.Message-name {
+  padding-right: 3%;
+  font-weight: bolder;
+}
+
+.Message-content {
+  width: 100%;
+  flex-direction: column-reverse;
+  height: inherit;
+}
+
+.Content-header {
+  width: 100%;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  display: flex;
+}

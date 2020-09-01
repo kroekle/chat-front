@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: chat-front
+  name: chat-front
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-front
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: chat-front
+    spec:
+      containers:
+      - image: gcr.io/cloud-native-madison/chat-front:0.1.1
+        imagePullPolicy: IfNotPresent
+        name: chat-front
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-front
+  labels:
+    app: chat-front
+spec:
+  ports:
+  - port: 80 
+    name: http
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: chat-front
+
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: chat-front
+  namespace: default
+  labels:
+    app: chat-front
+spec:
+  gateways:
+  - chat-gateway
+  hosts:
+  - chat-front
+  - chat.kurtspace.com
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: chat-front
+        port:
+          number: 80
+    corsPolicy:
+      allowOrigin: 
+      - '*'
+      allowCredentials:  true
+      allowHeaders:
+      - content-type
+      - keep-alive
+      - user-agent
+      - cache-control
+      - content-type
+      - content-transfer-encoding
+      - x-accept-content-transfer-encoding
+      - x-accept-response-streaming
+      - x-user-agent
+      allowMethods:
+      - GET
+      - OPTIONS
+      

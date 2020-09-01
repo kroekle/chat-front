@@ -1,0 +1,29 @@
+.Body {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Name-text {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.Name-content {
+  width: 100%;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.black {
+  color: black;
+}
