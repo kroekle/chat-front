@@ -26,6 +26,10 @@ export default ({setPeople}:Props) => {
       const reg = new Register();
       reg.setPerson(person);
       const stream = GrpcClients.chat().registerAndStream(reg, {});
+      stream.on('error', (err) => {
+        // TODO: likely want to restart the stream (with some sort of incremental backoff)
+        console.log(`error called: ${err.message}`);
+      });
       stream.on('data', (res) => {
         if (res.hasText()) {
           setMessages((messages) => {
